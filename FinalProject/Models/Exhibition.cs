@@ -1,23 +1,26 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace FinalProject.Data;
+namespace FinalProject.Models;
 
 public class Exhibition
 {
     [Key]
-    public int exhibitionId { get; set; } 
+    public int ExhibitionId { get; set; }
 
     [Required]
     [StringLength(100)]
-    public string title { get; set; } 
+    public string Title { get; set; }
 
     [Required]
-    public string description { get; set; } 
+    public string Description { get; set; }
 
-    [Required]
-    public int artistId { get; set; }
+    // Foreign Key to the ApplicationUser (Artist)
+    public string ArtistId { get; set; }
 
-    public Artist artist { get; set; } 
+    // Navigation property to the ApplicationUser (Artist)
+    public ApplicationUser Artist { get; set; }
 
-    public ICollection<Painting> paintings { get; set; } 
+    // Navigation property to Paintings (One exhibition can have many paintings)
+    public ICollection<Painting> Paintings { get; set; } = new List<Painting>();
 }
+

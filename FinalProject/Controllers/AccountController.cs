@@ -11,11 +11,11 @@ namespace FinalProject.Controllers;
 [ApiController]
 public class AccountController : Controller
 {
-    private readonly UserManager<IdentityUser> _userManager;
+    private readonly UserManager<ApplicationUser> _userManager;
     private readonly RoleManager<IdentityRole> _roleManager;
     private readonly IConfiguration _configuration;
 
-    public AccountController(UserManager<IdentityUser> userManager, RoleManager<IdentityRole> roleManager,
+    public AccountController(UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager,
         IConfiguration configuration)
     {
         _userManager = userManager;
@@ -23,18 +23,47 @@ public class AccountController : Controller
         _configuration = configuration;
     }
 
-    [HttpPost("register")]
-    public async Task<IActionResult> Register([FromBody] Register model)
+    [HttpPost("register/user")]
+    public async Task<IActionResult> RegisterUser([FromBody] Register model)
     {
-        var user = new IdentityUser { UserName = model.Username };
+        var user = new ApplicationUser { UserName = model.Username };
         var result = await _userManager.CreateAsync(user, model.Password);
 
         if (result.Succeeded)
         {
+            await _userManager.AddToRoleAsync(user, "User");
             return Ok(new {message = "Registration successful"});
         }
         return BadRequest(result.Errors);
     }
+    [HttpPost("register/artist")]
+    public async Task<IActionResult> RegisterArtist([FromBody] RegisterArtist model)
+    {
+        // Create a new ApplicationUser (IdentityUser) instance
+        var user = new ApplicationUser 
+        { 
+            UserName = model.Username, 
+            Email = model.Email,
+            ArtistName = model.ArtistName,
+            Bio = model.Bio
+        };
+
+        // Create the user with the provided password
+        var result = await _userManager.CreateAsync(user, model.Password);
+
+        if (result.Succeeded)
+        {
+            // Assign the User and Artist roles to the new user
+            await _userManager.AddToRoleAsync(user, "User");
+            await _userManager.AddToRoleAsync(user, "Artist");
+
+            return Ok(new { message = "Registration successful, Artist role assigned." });
+        }
+
+        // If creation failed, return the errors
+        return BadRequest(result.Errors);
+    }
+
 
     [HttpPost("login")]
     public async Task<IActionResult> Login([FromBody] Login model)
@@ -64,6 +93,7 @@ public class AccountController : Controller
         return Unauthorized();
     }
 
+    /*
     [HttpPost("add-role")]
     public async Task<IActionResult> AddRole([FromBody] string role)
     {
@@ -93,5 +123,5 @@ public class AccountController : Controller
             return Ok(new { message = "Role assigned successfully!"});
         }
         return BadRequest(result.Errors);
-    }
+    }*/
 }

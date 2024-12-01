@@ -1,40 +1,38 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using FinalProject.Data;
 
-namespace FinalProject.Data;
+namespace FinalProject.Models;
 
 public class Painting
 {
     [Key]
-    public int paintingId { get; set; } 
+    public int PaintingId { get; set; }
 
     [Required]
     [StringLength(100)]
-    public string title { get; set; } 
+    public string Title { get; set; }
 
     [Required]
-    [StringLength(100)]
-    public string artist { get; set; } 
+    public string Medium { get; set; }
 
     [Required]
-    public string medium { get; set; } 
+    public string Dimensions { get; set; }
 
-    [Required]
-    public string dimensions { get; set; } 
-    
     [Required]
     [DataType(DataType.Currency)]
-    public decimal price { get; set; } 
+    public decimal Price { get; set; }
 
-    public string story { get; set; } 
+    public string Story { get; set; }  // Optional story for the painting
 
     [Required]
     [StringLength(255)]
-    public string imageUrl { get; set; } 
+    public string ImageUrl { get; set; }
+    
+    public int ExhibitId { get; set; }
 
-    [Required]
-    public int exhibitionId { get; set; } 
-
-    public Exhibition exhibition { get; set; } 
-
-    public int rating { get; set; } 
+    // Foreign Key to the ApplicationUser (the artist)
+    public string UserId { get; set; } = string.Empty;  // The artist's user id
+    
+    // Navigation property to the ApplicationUser (Artist)
+    public ApplicationUser User { get; set; } = null!;
 }
