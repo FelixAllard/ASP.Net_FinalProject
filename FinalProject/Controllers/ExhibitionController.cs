@@ -21,7 +21,7 @@ public class ExhibitionController : ControllerBase
     }
 
     // GET: api/Exhibition
-    [HttpGet]
+    [HttpGet("")]
     public async Task<ActionResult<IEnumerable<Exhibition>>> GetExhibitionsForArtist()
     {
         // Get the current logged-in user
@@ -78,7 +78,7 @@ public class ExhibitionController : ControllerBase
 
 
     [Authorize(Roles = "Artist")]
-    [HttpPost]
+    [HttpPost("")]
     public async Task<ActionResult<Exhibition>> CreateExhibition(Exhibition exhibition)
     {
         // Get the current logged-in user

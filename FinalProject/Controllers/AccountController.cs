@@ -23,6 +23,21 @@ public class AccountController : Controller
         _configuration = configuration;
     }
 
+    
+    [HttpGet("all-roles")]
+    public async Task<IActionResult> GetAllRoles()
+    {
+        var roles = _roleManager.Roles.Select(r => r.Name).ToList();
+
+        if (roles.Count == 0)
+        {
+            return NotFound("No roles found.");
+        }
+
+        return Ok(roles);
+    }
+    
+    
     [HttpPost("register/user")]
     public async Task<IActionResult> RegisterUser([FromBody] Register model)
     {
@@ -31,7 +46,6 @@ public class AccountController : Controller
 
         if (result.Succeeded)
         {
-            await _userManager.AddToRoleAsync(user, "User");
             return Ok(new {message = "Registration successful"});
         }
         return BadRequest(result.Errors);
