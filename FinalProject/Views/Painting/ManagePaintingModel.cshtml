@@ -1,0 +1,51 @@
+@page
+@model FinalProject.Views.Painting.CreatePaintingModel
+@{
+    ViewData["Title"] = "Create Painting";
+}
+
+<h1>Create Painting</h1>
+
+<form method="post">
+    <div>
+        <label asp-for="Painting.Title">Title</label>
+        <input asp-for="Painting.Title" class="form-control" />
+        <span asp-validation-for="Painting.Title" class="text-danger"></span>
+    </div>
+    <div>
+        <label asp-for="Painting.Medium">Medium</label>
+        <input asp-for="Painting.Medium" class="form-control" />
+        <span asp-validation-for="Painting.Medium" class="text-danger"></span>
+    </div>
+    <div>
+        <label asp-for="Painting.Dimensions">Dimensions</label>
+        <input asp-for="Painting.Dimensions" class="form-control" />
+        <span asp-validation-for="Painting.Dimensions" class="text-danger"></span>
+    </div>
+    <div>
+        <label asp-for="Painting.Price">Price</label>
+        <input asp-for="Painting.Price" class="form-control" type="number" />
+        <span asp-validation-for="Painting.Price" class="text-danger"></span>
+    </div>
+    <div>
+        <label asp-for="Painting.Story">Story</label>
+        <textarea asp-for="Painting.Story" class="form-control"></textarea>
+        <span asp-validation-for="Painting.Story" class="text-danger"></span>
+    </div>
+    <div>
+        <label asp-for="Painting.ImageUrl">Image URL</label>
+        <input asp-for="Painting.ImageUrl" class="form-control" />
+        <span asp-validation-for="Painting.ImageUrl" class="text-danger"></span>
+    </div>
+    <div>
+        <label for="ExhibitionId">Select Exhibition</label>
+        <select id="ExhibitionId" name="ExhibitionId" class="form-control">
+            <option value="">-- Select Exhibition --</option>
+            @foreach (var exhibition in Model.Exhibitions)
+            {
+                <option value="@exhibition.ExhibitionId">@exhibition.Title</option>
+            }
+        </select>
+    </div>
+    <button type="submit" class="btn btn-primary">Create Painting</button>
+</form>

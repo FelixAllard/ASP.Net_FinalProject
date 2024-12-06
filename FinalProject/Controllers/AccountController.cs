@@ -46,6 +46,7 @@ public class AccountController : Controller
 
         if (result.Succeeded)
         {
+            await _userManager.AddToRoleAsync(user, "User");
             return Ok(new {message = "Registration successful"});
         }
         return BadRequest(result.Errors);

@@ -1,0 +1,42 @@
+@page
+@model FinalProject.Views.Login.RegisterArtist
+@{
+    ViewData["Title"] = "Register as Artist";
+}
+
+<div class="container mt-4">
+    <h1 class="text-center">Register as an Artist</h1>
+    <form method="post" class="mt-3">
+        <div class="form-group">
+            <label for="Username">Username</label>
+            <input type="text" id="Username" name="Username" class="form-control" required />
+        </div>
+        <div class="form-group mt-3">
+            <label for="Email">Email</label>
+            <input type="email" id="Email" name="Email" class="form-control" required />
+        </div>
+        <div class="form-group mt-3">
+            <label for="ArtistName">Artist Name</label>
+            <input type="text" id="ArtistName" name="ArtistName" class="form-control" required />
+        </div>
+        <div class="form-group mt-3">
+            <label for="Bio">Bio</label>
+            <textarea id="Bio" name="Bio" class="form-control" required></textarea>
+        </div>
+        <div class="form-group mt-3">
+            <label for="Password">Password</label>
+            <input type="password" id="Password" name="Password" class="form-control" required />
+        </div>
+        <div class="form-group mt-3">
+            <label for="ConfirmPassword">Confirm Password</label>
+            <input type="password" id="ConfirmPassword" name="ConfirmPassword" class="form-control" required />
+        </div>
+        <button type="submit" class="btn btn-primary mt-3">Register</button>
+    </form>
+    @if (Model.Message != null)
+    {
+        <div class="alert mt-3 @(Model.IsSuccess ? "alert-success" : "alert-danger")">
+            @Model.Message
+        </div>
+    }
+</div>
