@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace FinalProject.Controllers;
 
-[Microsoft.AspNetCore.Components.Route("api/artists")]
+[Route("api/artists")]
 [ApiController]
 public class ArtistController : ControllerBase
 {

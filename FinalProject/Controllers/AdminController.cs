@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace FinalProject.Controllers;
 
 [Authorize (Roles = "Admin")]
-[Microsoft.AspNetCore.Components.Route("api/admin")]
+[Route("api/admin")]
 [ApiController]
 public class AdminController : ControllerBase
 {

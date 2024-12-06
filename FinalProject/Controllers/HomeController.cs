@@ -1,10 +1,12 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using FinalProject.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace FinalProject.Controllers;
 
-[Microsoft.AspNetCore.Components.Route("/")]
+[Route("[controller]")]
+[ApiExplorerSettings(IgnoreApi = true)]
 public class HomeController : Controller
 {
     private readonly ILogger<HomeController> _logger;
@@ -13,12 +15,12 @@ public class HomeController : Controller
     {
         _logger = logger;
     }
-
+    [HttpGet("index")]
     public IActionResult Index()
     {
+        Console.WriteLine("Accessed!");
         return View();
     }
-
     public IActionResult Privacy()
     {
         return View();

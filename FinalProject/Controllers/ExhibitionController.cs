@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace FinalProject.Controllers;
 
-[Microsoft.AspNetCore.Components.Route("api/[controller]")]
+[Route("api/[controller]")]
 [ApiController]
 public class ExhibitionController : ControllerBase
 {
@@ -28,7 +28,7 @@ public class ExhibitionController : ControllerBase
         var user = await _userManager.GetUserAsync(User);
         if (user == null)
         {
-            return Unauthorized("User not found");
+            return Unauthorized("User not found OUHA BOUGA");
         }
 
         // Return exhibitions for the current logged-in artist
