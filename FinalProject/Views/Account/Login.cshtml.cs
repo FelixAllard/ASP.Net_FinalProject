@@ -1,10 +1,9 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using FinalProject.Models;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using FinalProject.Models;
-using System.Threading.Tasks;
 
-namespace FinalProject.Pages.Account
+namespace FinalProject.Views.Account
 {
     public class LoginModel : PageModel
     {

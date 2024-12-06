@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace FinalProject.Controllers;
 
 [Authorize(Roles = "User")]
-[Microsoft.AspNetCore.Components.Route("api/User")]
+[Microsoft.AspNetCore.Components.Route("api/user")]
 [ApiController]
 public class UserController : ControllerBase
 {

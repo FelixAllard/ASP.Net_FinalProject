@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace FinalProject.Pages;
+namespace FinalProject.Views;
 
-public class Cart : PageModel
+public class Paintings : PageModel
 {
     public void OnGet()
     {

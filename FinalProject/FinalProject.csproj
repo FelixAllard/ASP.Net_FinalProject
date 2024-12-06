@@ -22,5 +22,13 @@
         <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="8.0.6" />
         <PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2" />
     </ItemGroup>
+    
+    <ItemGroup>
+      <_ContentIncludedByDefault Remove="Pages\Account\Login.cshtml" />
+    </ItemGroup>
+    
+    <ItemGroup>
+      <AdditionalFiles Include="Views\Account\Login.cshtml" />
+    </ItemGroup>
 
 </Project>

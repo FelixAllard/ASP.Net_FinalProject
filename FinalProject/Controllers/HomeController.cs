@@ -4,6 +4,7 @@ using FinalProject.Models;
 
 namespace FinalProject.Controllers;
 
+[Microsoft.AspNetCore.Components.Route("/")]
 public class HomeController : Controller
 {
     private readonly ILogger<HomeController> _logger;

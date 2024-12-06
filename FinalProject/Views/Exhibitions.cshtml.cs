@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace FinalProject.Pages.Shared;
+namespace FinalProject.Views;
 
-public class _Layout : PageModel
+public class Exhibitions : PageModel
 {
     public void OnGet()
     {
